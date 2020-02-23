@@ -14,7 +14,7 @@ taxonomy: markup
 * Github :  [github.com/ISSuh](https://github.com/ISSuh)
 * Resume : [KOR](/blog/about_kor/) / [ENG](/blog/about_en/)
 
-> 더 나은 소프트웨어를 위해
+> For better Software
 
 # Experience
 
