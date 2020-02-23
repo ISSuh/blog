@@ -12,7 +12,7 @@ taxonomy: markup
 * 서인석 (InSeock Suh)
 * Email :   <yoyus5@naver.com>
 * Github :  [github.com/ISSuh](https://github.com/ISSuh)
-* Resume : [KOR](/about_kor/) / [ENG](/about_en/)
+* Resume : [KOR](/blog/about_kor/) / [ENG](/blog/about_en/)
 
 > 더 나은 소프트웨어를 위해
 
