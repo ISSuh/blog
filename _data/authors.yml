@@ -1,0 +1,14 @@
+# Sample Authors
+# Remove file or replace with your own
+
+Suh In Seock :
+  name: Suh In Seock
+  picture: /assets/image/profile.jpeg
+  email: yoyus5@naver.com
+  links:
+    - title: Email
+      url: mailto:yoyus5@naver.com
+      icon: fas fa-envelope-square
+    - title: Github
+      url: https://github.com/ISSuh
+      icon: fab fa-github-square
