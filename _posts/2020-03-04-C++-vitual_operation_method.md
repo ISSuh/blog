@@ -47,7 +47,7 @@ Derived myDerived;
 
 위와 같은 클레스를 정의한 상태에서의 *vtable* 의 구조는 아래 그림과 같다.
 
-![example](../assets/posts/C++/itual_operation_method/pic_1.png)
+![example](https://issuh.github.io/blog/assets/posts/C++/vitual_operation_method/pic_1.png)
 
 ## virtual 키워드가 필요한 이유
 ---
