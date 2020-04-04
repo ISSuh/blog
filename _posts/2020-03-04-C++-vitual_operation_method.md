@@ -147,6 +147,6 @@ public:
 
 ---
 ---
-*참고*. 전문가를 위한 C++ (4판) - 마크 그레고리
+*참고*. Professional C++ 4/E - Marc Gregoire
 
 ---
