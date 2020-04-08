@@ -116,13 +116,15 @@ public:
 
 ...
 
-  // AbstractFactory 객체 생성
+  // 상황에 맞춰 ConcreteFactory을 통해 Factory 객체 생성
   GUIFactory* factory = nullptr;
+
   if(isWindow())
     factory = new WinGUIFactory();
   else
     factory = new OSXGUIFactory();
 
+  // Factory에서 실제 Product 객체 생성
   Button* btn = factory->createButton();
   MousePointer* pointer = factory->createMousePointer();
 
