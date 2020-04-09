@@ -59,124 +59,109 @@ tags:
 ////////////////////////////////////////////////////////////////////////////////
 // Product
 ////////////////////////////////////////////////////////////////////////////////
-class Person {
+class Display {
 public:
-  void setName(const std::string& name) { m_name = name; }
-  void setAge(const int age)            { m_age = age; }
-  void setTeam(const std::string& job)  { m_job = job; }
-
-  void printInfo() const {
-    std::cout << m_name << " / "<< m_age << " / "<< m_team << " / " << std::endl;
-  }
+  void setWidth(const int width) { m_width = width; }
+  void setHeight(const int height) {m_height = height; }
+  void setOS(const std::string& os) { m_os = os; }
 
 private:
-  std::string m_name; 
-  int m_age;
-  std::string m_team; 
+  int m_width;
+  int m_height;
+  std::string m_os;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Builder(AbstractBuilder)
 ////////////////////////////////////////////////////////////////////////////////
-class PersonBuilder {
+class DisplayBuilder {
 public:
-  virtual ~PersonBuilder() {}
+  virtual ~DisplayBuilder() {}
 
-  void createNewPerson() const { 
-    return new Person(); 
-  }
+  void createDisplay() { m_display = new Display(); }
 
-  Person* getPerson() const { 
-    return m_person; 
-  }
+  Display* getDisplay() const { return m_display; }
 
-  virtual void buildName(const std::string& name) = 0;
-  virtual void buildAge(const int age) = 0;
-  virtual void buildTeam() = 0;
+  virtual buildWidth(const int width) = 0;
+  virtual buildHeight(const int height) = 0;
+  virtual buildOs() = 0;
 
 protected:
-  Person m_person;
+  Display* m_display = nullptr;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // ConcreteBuilder
 ////////////////////////////////////////////////////////////////////////////////
-class DevelopmentPersonBuilder : public PersonBuilder {
+class WinDisplayBuilder : public DisplayBuilder {
 public:
-  void buildName(const std::string& name) override {
-     m_person->setName(name);
+  void buildWidth(const int width) override {
+     m_person->setWidth(width);
   }
 
-  void buildAge(const int age) override { 
-    m_person->setAge(age); 
+  void buildHeight(const int height) override { 
+    m_person->setHeight(height); 
   }
 
-  void buildTeam() override { 
-    m_person->setTeam("Development"); 
+  void buildOs() override { 
+    m_person->setOS("WINDOW"); 
   }
 };
 
-class SalesPersonBuilder : public PersonBuilder {
+class OSXDisplayBuilder : public DisplayBuilder {
 public:
-  void buildName(const std::string& name) override { 
-    m_person->setName(name); 
+  void buildWidth(const int width) override { 
+    m_person->setWidth(width); 
   }
 
-  void buildAge(const int age) override { 
-    m_person->setAge(age); 
+  void buildHeight(const int height) override { 
+    m_person->setHeight(height); 
   }
 
-  void buildTeam() override { 
-    m_person->setTeam("Sales"); 
+  void buildOs() override { 
+    m_person->setOS("OSX"); 
   }
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Director
 ////////////////////////////////////////////////////////////////////////////////
-class Director {
+class DisplayDirector {
 public:
-  void setBuilder(PersonBuild* personBuilder) {
-    m_personBuilder = personBuilder; 
+  void setDisplayBuilder(DisplayBuilder* displayBuilder) {
+    m_displayBuilder = displayBuilder; 
   }
   
-  void construct(const std::string& name, const int age) const {
-    m_personBuilder->createPerson();
+  Display* constructDisplay(const int width, const int height) {
+    m_displayBuilder->createDisplay();
 
-    m_personBuilder->buildName(name);
-    m_personBuilder->buildAge(age);
-    m_personBuilder->buildJob();
-  }
+    m_displayBuilder->buildWidth(width);
+    m_displayBuilder->buildHeight(height);
+    m_displayBuilder->buildOs();
 
-  Person* GetPerson() { 
-    return m_personBuilder->getPerson(); 
+    return m_displayBuilder->getDisplay();
   }
 
 private:
-  PersonBuild* m_personBuilder = nullptr;
+  DisplayBuilder* m_displayBuilder = nullptr;
 };
 
 
 ...
 
   // product, builer, director 객체 생성
-  Person* person = nullptr;
-  Director director;
+  Display* display = nullptr;
+  DisplayDirector director;
 
   // 상황에 따라 ConcreteBuilder 선택
-  if(hireDeveloper())
-    director.setBuilder(new DevelopmentPersonBuilder());
+  if(isWindow())
+    director.setDisplayBuilder(new WinDisplayBuilder());
   else
-    director.setBuilder(new SalesPersonBuilder());
+    director.setDisplayBuilder(new OSXDisplayBuilder());
 
-  // 선택된 ConcreteBuilder 적용 및 객체 생성을 위한 매개변수 설정
-  director.construct("Eddie", 29);
+  // 적용된 ConcreteBuilder에서 객체 생성
+  display = director.constructDisplay(600, 400);
   
-  // ConcreteBuilder에 맞춰 생성된 객체 적용
-  person = director.GetPerson();
-
-  person.printInfo();
-
 ...
 
 ```
