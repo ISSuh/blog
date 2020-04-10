@@ -8,7 +8,7 @@ tags:
 - Effective C++
 ---
 
-# Chapter.1 C++에 왔으면 C++의 법을 따릅시다.
+# Chapter.1 C++에 왔으면 C++의 법을 따릅시다
 
 ## Item.1 C++를 언어들의 연합체로 바라보는 안목은 필수
 
