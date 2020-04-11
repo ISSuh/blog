@@ -13,17 +13,23 @@ tags:
 
 ## Intent
 
+---
+
 객페를 생성하기 위해 인터페이스를 정의하지만, 어떤 클래스의 인스턴스를 생성할지에 대한 결정은 서브클래스가 하도록 한다.
 
 때때로 *Factory Method*는 *Virtual Constructor*라고도 불린다.
 
 ## Utility
 
+---
+
 - 어떤 클래스가 자신이 생성해야 하는 객체의 클래스를 예측할 수 없을 떄
 - 생성할 객체를 기술하는 책임을 자신의 서브클래스가 지정했으면 할 떄
 - 객체 생성의 책임을 몇개의 보조 서브클래스 가운데 하나에게 위임하고, 어떤 서브클래스가 위임자인지에 대한 정보를 최대한 숨기고 싶을 떄
 
 ## Structure
+
+---
 
 ![example](https://online.visual-paradigm.com/repository/images/7b40f65b-07b8-4758-8d64-ed22a0f4fddf.png)
 
@@ -48,6 +54,8 @@ tags:
 
 ## Feature
 
+---
+
 - *Factory Method Pattern*은 응용프로그램에 국한된 클래스가 코드에 종속되지 않도록 한다.
   - 응용프로그램은 *Product* 클래스에 정의된 인터페이스만 동작하도록 코드를 작성기 때문에 사용자가 정의한 어떠한 *ConcreteProduct* 클래스와도 동작할수 있게 한다.
 - *ConcreteProduct* 객체 하나만 생성하려 할때도 *Creator* 클래스를 상속하여 서브클래스를 만들어야 한다.
@@ -61,6 +69,8 @@ tags:
 ![example](http://www.cs.unc.edu/~stotts/GOF/hires/Pictures/fmeth048.gif)
 
 ## Implementation
+
+---
 
 *Factort Method Pattern*을 구현할떄는 다음과 같은 사항을 고려해야 한다.
 
@@ -210,6 +220,8 @@ public:
 ```
 
 ## Related Pattern
+
+---
 
 *Abstract Factory Pattern*은 이 *Factory Method*를 이용해서 구현할 때가 많다.
 
