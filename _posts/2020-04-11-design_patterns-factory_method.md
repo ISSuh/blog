@@ -156,7 +156,7 @@ public:
 
 ```cpp
 /**
-* @brief Product(AbstractProduct)
+* @brief Product(AbstractProduct) - Display
 */
 class Display {
 public:
@@ -165,13 +165,16 @@ public:
 };
 
 /**
-* @brief ConcreteProduct
+* @brief ConcreteProduct - WinDisplay
 */
 class WinDisplay : public Display {
 public:
   void show() const override { std::cout << "WIN" << std::endl; }
 };
 
+/**
+* @brief ConcreteProduct - OSXDisplay
+*/
 class OSXDisplay : public Display {
 public:
   void show() const override { std::cout << "OSX" << std::endl; }
