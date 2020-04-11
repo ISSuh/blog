@@ -8,9 +8,7 @@ tags:
 - Effective C++
 ---
 
-# Chapter.1 C++에 왔으면 C++의 법을 따릅시다
-
-## Item.2 #define을 쓰려거든 const, enum, inline을 떠올리자
+# #define을 쓰려거든 const, enum, inline을 떠올리자
 
 > 가급적 전처리기(Preprocessor) 보다 컴파일러를 가까이 하자
 

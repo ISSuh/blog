@@ -8,9 +8,7 @@ tags:
 - Effective C++
 ---
 
-# Chapter.1 C++에 왔으면 C++의 법을 따릅시다
-
-## Item.1 C++를 언어들의 연합체로 바라보는 안목은 필수
+# C++를 언어들의 연합체로 바라보는 안목은 필수
 
 오늘날의 C++는 **다중패러다임 프로그래밍 언어(Multiparadigm Programming Language)** 라고 불리운다.
 
