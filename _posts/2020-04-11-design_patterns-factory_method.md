@@ -145,18 +145,18 @@ public:
 ### Implementation Example
 
 ```cpp
-/////////////////////////////////////////
-// Product(AbstractProduct)
-/////////////////////////////////////////
+/**
+* @brief Product(AbstractProduct)
+*/
 class Display {
 public:
   virtual ~Button() {}
   virtual void show() const = 0;
 };
 
-/////////////////////////////////////////
-// ConcreteProduct
-/////////////////////////////////////////
+/**
+* @brief ConcreteProduct
+*/
 class WinDisplay : public Display {
 public:
   void show() const override { std::cout << "WIN" << std::endl; }
@@ -167,9 +167,9 @@ public:
   void show() const override { std::cout << "OSX" << std::endl; }
 };
 
-/////////////////////////////////////////
-// Creator(AbstractCreator)
-/////////////////////////////////////////
+/**
+* @brief Creator(AbstractCreator)
+*/
 class DisplayCreator {
 public:
   virtual ~Creator() {}
@@ -178,15 +178,15 @@ public:
   virtual Display* CreateDisplay(OSType type) const = 0;
 };
 
-/////////////////////////////////////////
-// ConcreteCreator
-/////////////////////////////////////////
+/**
+* @brief ConcreteCreator
+*/
 class MyDisplayCreator : public DisplayCreator {
 public:
   // Factory Method 구현
   Display* CreateDisplay(OSType type) const override {
     switch(type){
-      case OS_WIN: {
+      case OS_WIN: { 
         return new WinDisplay();
       }
       case OS_OSX: {
