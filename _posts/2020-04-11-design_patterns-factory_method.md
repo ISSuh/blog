@@ -209,6 +209,14 @@ public:
 ...
 ```
 
+## Related Pattern
+
+*Abstract Factory Pattern*은 이 *Factory Method*를 이용해서 구현할 때가 많다.
+
+*Factory Method*는 *Template Method Pattern* 에서 사용될 떄가 많다.
+
+*Prototype Pattern*은 *Creator* 클래스의 상속이 필요하지 않다. 그러나 *Product* 클래스에 정의된 초기화 연산은 필요하다. *Creator* 클래스는 객체의 초기화를 위해 초기화 연산을 사용하지만, *Factory Method*는 이러한 연산이 필요하지 않다.
+
 ---
 ---
 *참고*. Design Patterns : Elements of Reusable Object-Oriented Software - Erich Gamma
