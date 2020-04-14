@@ -42,7 +42,7 @@ tags:
 - **Prototype**
   - *Graphic*에 해당
   - 자신을 복제하는 데 필요한 인터페이스를 정의
-- **ConcretePrototype()**
+- **ConcretePrototype**
   - *Staff*, *WholeNote*, *HalfNote*에 해당
   - 자신을 복제하는 연산(인터페이스)을 구현
 - **Client**
