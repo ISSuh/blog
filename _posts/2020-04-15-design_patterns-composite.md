@@ -184,7 +184,7 @@ private:
 * @brief Composite - MediaWindow
 * @details 하위 구성요소를 가지지면서 관련 인터페이스를 구현 및 정의
 */
-class MediaWindow {
+class MediaWindow : public Window {
 public:
   MediaWindow(const std::string& name) : Window(name) {};
   virtual ~MediaWindow() {}
@@ -245,18 +245,22 @@ public:
 
 ...
 
+  // Composite 객체 생성
   MediaWindow* container = new MediaWindow("MyMediaWindow");
+  VideoPlayer* subContainer = new VideoPlayer("MyVideoWindow");
+
+  // Leaf 객체 생성
   TitleBar* mainTitleBar = new TitleBar("MyMediaWindowTitleBar");
+  TitleBar* subTitleBar = new TitleBar("MyVideoWindowTitleBar");
   
+  // Leaf객체를 Composite의 자식으로 구성
   container->add(mainTitleBar);
   container->add(new MenuBar("MyMediaWindowTitleBar"));
-
-  MediaWindow* subContainer = new MediaWindow("MyVideoWindow");
-  TitleBar* subTitleBar = new TitleBar("MyVideoWindowTitleBar");
-
   container->add(mainTitleBar);
+
   subContainer->add(new MenuBar("MyVideoWindowTitleBar"));
 
+  // Composite을 Composite의 자식으로 구성
   container->add(subContainer);
 
   container->printElementList();
