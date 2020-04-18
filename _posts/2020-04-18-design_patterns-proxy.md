@@ -1,6 +1,6 @@
 ---
 title: Design Patterns - Proxy
-date: 2020-04-18 15:22:00
+date: 2020-04-18 17:19:00
 categories:
 - Design Patterns
 tags:
