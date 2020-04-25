@@ -215,10 +215,127 @@ void Observer::Update(Subject*, Aspect& interest);
 
 ```cpp
 /**
-* @brief -
+* @brief Subject - Subject
 * @details
 */
+class Subject {
+public:
+  virtual ~Subject();
+  
+  virtual void attach(std::string& id, Observer* obj) {
+    m_objMap[id] = obj;
+  }
 
+  virtual void detatch(std::string& id) {
+    m_objMap.erase(id);
+  };
+
+  virtual void notify(){
+    for(const auto& obj : m_objMap){
+      obj.update(this);
+    }
+  }
+
+protected:
+  Subject();
+
+private:
+  std::map<std::string, Observer*> m_objMap;
+};
+
+/**
+* @brief ConcreteSubject - DataBase
+* @details
+*/
+class ClockTimer : public PushServer {
+public:
+  Timer();
+
+  virtual int getHour();
+  virtual int getMinute();
+  virtual int getSecond();
+  
+  void tick() {
+    // 시간 상태 변경
+
+    ...
+
+    // 등로된 Observer들에게 통지
+    notify();
+  }
+
+private:
+  
+  ...
+
+}
+
+/**
+* @brief Observer - Observer
+* @details
+*/
+class Observer {
+public:
+  virtual ~Observer();
+  virtual void update(Subject* chaingedSubject) = 0;
+
+protected:
+  Observer();
+};
+
+/**
+* @brief ConcreteObserver - ClientA
+* @details
+*/
+class DigitalClock : public Widget,
+                     public Observer {
+public:
+  DigitalClock(const std::string& id, ClockTimer* timer) : m_id(id),
+                                                           m_subject(timer){
+    m_subject->attach(m_id,this);
+  }
+
+  virtual ~DigitalClock() {
+    m_suject->detatch(m_id);
+  }
+
+  virtual void update(Subject* chaingedSubject){
+    // 통지해온 Subject와 내가 바라보고 있는 Subject가 일치하는지 확인
+    if(chaingedSubject == m_subject){
+      draw();
+    }
+  }
+  
+  virtual void draw() {
+    // Subject로 부터 새로운 값을 얻어옴
+    int hour = m_subject->getHour();
+    int minute = m_subject->getMinute();
+    int second = m_subject->getSecond();
+
+    ...
+
+  }
+
+private:
+  const std::string m_id;
+  ClockTimer* m_subject;
+}
+
+
+...
+
+  // Subject 객체 생성
+  ClockTimer* timer = new ClickTimer();
+
+  // Observer 객체 생성 및 Subject 등록
+  DigitalTimer* digitalTimer = new DigitalTimer("Digital", timer);
+  AnalogTimer* analogTimer = new AnalogTimer("Analog", timer);
+
+  // Subject의 상태 변경
+  // 이후 등록된 모든 Observer에게 상태 변경 통지
+  timer->tick();
+
+...
 
 ```
 
@@ -226,7 +343,7 @@ void Observer::Update(Subject*, Aspect& interest);
 
 ---
 
-
+복잡한 갱신의 의미 구조를 캡슐화함으로써, *ChangeManager* 객체는 *Subject*와 *Observer* 사이의 "Mediator" 역할을 한다. 또한 *ChangeManager* 객체는 *Singleton Patten*을 사용하여 시스템에 하나만 존재하고 전역적으로 접급이 가능하도록 할 수 있다.
 
 ---
 ---
