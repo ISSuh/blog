@@ -1,5 +1,5 @@
 ---
-title: Effective C++ - Item.2
+title: Effective C++ - Item.3
 date: 2020-04-30 11:23:00
 categories:
 - C++
