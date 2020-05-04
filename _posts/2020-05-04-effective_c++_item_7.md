@@ -1,6 +1,6 @@
 ---
 title: Effective C++ - Item.7
-date: 2020-05-02 13:18:00
+date: 2020-05-04 13:18:00
 categories:
 - C++
 tags:
