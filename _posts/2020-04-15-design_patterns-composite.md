@@ -158,26 +158,26 @@ tags:
 
 ```cpp
 /**
-* @brief Component - Window
-* @details 집합관계에서 포함되는 인터페이스를 정의
-*/
+ * @brief Component - Window
+ * @details 집합관계에서 포함되는 인터페이스를 정의
+ */
 class Window {
-public:
-  virtual ~Window() {}
+ public:
+  virtual ~Window() = default;
 
   // 구성요소들의 공통 인터페이스 정의
   virtual const std::string& getName() const { return m_name; }
   virtual void printElementList() = 0;
 
   // 자식요소 관리를 위한 인터페이스 정의
-  virtual void add(Window* window) {}
-  virtual void remove(Window* window) {}
+  virtual void add(Window* window) {};
+  virtual void remove() {};
 
-protected:
+ protected:
   Window(const std::string& name) : m_name(name) {};
 
-private:
-  const std::string m_name;
+ private:
+    const std::string m_name;
 };
 
 /**
@@ -187,18 +187,54 @@ private:
 class MediaWindow : public Window {
 public:
   MediaWindow(const std::string& name) : Window(name) {};
-  virtual ~MediaWindow() {}
+  virtual ~MediaWindow() {
+    for(auto& e : m_elements){
+      delete e;
+    }
+  }
 
   // 구성요소들의 공통 인터페이스 구현
-  void printElementList() override {ㄴ
+  void printElementList() override {
+    std::cout << this->getName() << std::endl;
+
     for(const auto& e : m_elements){
-      std::cout << e->printElementList() << std::endl;
+      e->printElementList();
     }
   }
 
   // 자식요소 관리를 위한 인터페이스 구현
   void add(Window* window) override { m_elements.push_back(window); }
-  void remove(Window* window) override { m_elements.pop_back(window); }
+  void remove() override { m_elements.pop_back(); }
+
+private:
+  std::vector<Window*> m_elements;
+};
+
+/**
+* @brief Composite - ImageWindow
+* @details 하위 구성요소를 가지지면서 관련 인터페이스를 구현 및 정의
+*/
+class ImageWindow : public Window {
+public:
+  ImageWindow(const std::string& name) : Window(name) {};
+  virtual ~ImageWindow() {
+    for(auto& e : m_elements){
+      delete e;
+    }
+  }
+
+  // 구성요소들의 공통 인터페이스 구현
+  void printElementList() override {
+    std::cout << this->getName() << std::endl;
+
+    for(const auto& e : m_elements){
+      e->printElementList();
+    }
+  }
+
+  // 자식요소 관리를 위한 인터페이스 구현
+  void add(Window* window) override { m_elements.push_back(window); }
+  void remove() override { m_elements.pop_back(); }
 
 private:
   std::vector<Window*> m_elements;
@@ -210,7 +246,7 @@ private:
 */
 class TitleBar : public Window{
 public:
-  Menubar(const std::string& name) : Window(name) {}
+  TitleBar(const std::string& name) : Window(name) {}
   virtual ~TitleBar() {}
 
   // 구성요소들의 공통 인터페이스 구현
@@ -223,21 +259,21 @@ public:
 */
 class MenuBar : public Window{
 public:
-  Menubar(const std::string& name) : Window(name) {}
-  virtual ~Menubar() {}
+  MenuBar(const std::string& name) : Window(name) {}
+  virtual ~MenuBar() {}
 
   // 구성요소들의 공통 인터페이스 구현
   void printElementList() override { std::cout <<  getName() << std::endl; }
 };
 
 /**
-* @brief Leaf - MenuBar
+* @brief Leaf - VideoPlayer
 * @details 자식이 없으며, Component의 인터페이스를 자신에 맞게 구현
 */
 class VideoPlayer : public MediaWindow{
 public:
   VideoPlayer(const std::string& name) : MediaWindow(name) {}
-  virtual ~MVideoPlayerenubar() {}
+  virtual ~VideoPlayer() {}
 
   // 구성요소들의 공통 인터페이스 구현
   void printElementList() override { std::cout <<  getName() << std::endl; }
@@ -246,24 +282,33 @@ public:
 ...
 
   // Composite 객체 생성
-  MediaWindow* container = new MediaWindow("MyMediaWindow");
-  VideoPlayer* subContainer = new VideoPlayer("MyVideoWindow");
+  MediaWindow* mainWindow = new MediaWindow("MyMediaWindow");
+  VideoPlayer* videoPlayer = new VideoPlayer("MyVideoWindow");
+  ImageWindow* imageWindow = new ImageWindow("MyImageWindow");
 
   // Leaf 객체 생성
   TitleBar* mainTitleBar = new TitleBar("MyMediaWindowTitleBar");
-  TitleBar* subTitleBar = new TitleBar("MyVideoWindowTitleBar");
-  
-  // Leaf객체를 Composite의 자식으로 구성
-  container->add(mainTitleBar);
-  container->add(new MenuBar("MyMediaWindowTitleBar"));
-  container->add(mainTitleBar);
+  TitleBar* videoTitleBar = new TitleBar("MyVideoWindowTitleBar");
+  TitleBar* imageTitleBar = new TitleBar("MyImageWindowTitleBar");
 
-  subContainer->add(new MenuBar("MyVideoWindowTitleBar"));
+  // Leaf객체를 Composite의 자식으로 구성
+  mainWindow->add(mainTitleBar);
+  mainWindow->add(new MenuBar("MyMediaWindowMenuBar"));
+
+  videoPlayer->add(new MenuBar("MyVideoWindowMenubar"));
+  videoPlayer->add(videoTitleBar);
+
+  imageWindow->add(imageTitleBar);
 
   // Composite을 Composite의 자식으로 구성
-  container->add(subContainer);
+  mainWindow->add(videoPlayer);
+  mainWindow->add(imageWindow);
 
-  container->printElementList();
+  mainWindow->printElementList();
+
+  mainWindow->remove();
+
+  mainWindow->printElementList();
 
 ...
 
