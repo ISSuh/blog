@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Structural Patterns 
 - Proxy
+- C++
 ---
 
 # Structural Patterns - Proxy

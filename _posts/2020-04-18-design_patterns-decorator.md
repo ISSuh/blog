@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Structural Patterns
 - Decorator
+- C++
 ---
 
 # Structural Patterns - Decorator

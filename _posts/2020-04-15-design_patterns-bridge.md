@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Structural Patterns
 - Bridge
+- C++
 ---
 
 # Structural Patterns - Bridge

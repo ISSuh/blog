@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Creational Patterns
 - Prototype
+- C++
 ---
 
 # Creational Patterns - Prototype
