@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Structural Patterns
 - Adapter
+- C++
 ---
 
 # Structural Patterns - Adapter

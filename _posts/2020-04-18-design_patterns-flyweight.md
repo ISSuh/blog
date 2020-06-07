@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Structural Patterns 
 - Flyweight
+- C++
 ---
 
 # Structural Patterns - Flyweight

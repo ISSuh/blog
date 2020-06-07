@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Creational Patterns
 - Singleton
+- C++
 ---
 
 # Creational Patterns - Singleton

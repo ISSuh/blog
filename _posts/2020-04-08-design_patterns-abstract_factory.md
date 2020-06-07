@@ -5,8 +5,9 @@ categories:
 - Design Patterns
 tags:
 - Design Patterns
-- C++
+- Creational Patterns
 - Abstract Factory
+- C++
 ---
 
 # Creational Patterns - Abstract Factory
